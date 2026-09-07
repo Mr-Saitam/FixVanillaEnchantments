@@ -1,0 +1,49 @@
+# ==========================================
+# FixVanillaEnchantments - Idioma: Español
+# ==========================================
+# Editá cualquier mensaje libremente.
+# Colores: usá & seguido de un código (ej: &a verde, &c rojo, &6 dorado, &7 gris).
+# Placeholders: cada mensaje indica cuáles podés usar entre %porcentajes%,
+# no los borres ni les cambies el nombre o dejarán de reemplazarse.
+# ==========================================
+
+prefix: "&6[Encantamientos]"
+
+messages:
+  items-fixed: "&aTus ítems fueron corregidos por tener encantamientos ilegales"
+  no-permission: "&cNo tienes permiso para usar este comando"
+  fixed-manual: "&aTus ítems han sido corregidos exitosamente"
+  no-items-to-fix: "&7Tus ítems ya estaban en orden, no había nada que corregir"
+  reload-success: "&aConfiguración recargada exitosamente"
+  in-game-only: "Este comando solo puede usarse dentro del juego."
+
+# Descripciones cortas de cada disparador. Se usan tanto en el archivo de log
+# como en los mensajes de debug de consola.
+# %container% se reemplaza por el tipo de contenedor (CHEST, BARREL, etc.)
+event-types:
+  join: "Ingreso al servidor"
+  manual: "Corrección manual (/fixmyitems)"
+  pickup: "Recogida del suelo"
+  hotbar: "Cambio de slot (hotbar)"
+  swap-main: "Intercambio de manos (principal)"
+  swap-off: "Intercambio de manos (secundaria)"
+  inventory-click: "Click en inventario"
+  cursor: "Ítem en cursor"
+  drag: "Arrastre en inventario"
+  inventory-close: "Cierre de inventario"
+  container-close: "Cierre de %container%"
+  shulker-suffix: " (dentro de shulker box)"
+
+# Líneas usadas al escribir en plugins/FixVanillaEnchantments/logs/
+log:
+  session-started: "=== FixVanillaEnchantments - Registro iniciado ==="
+  server-started-at: "Servidor iniciado: %date%"
+  plugin-version: "Versión del plugin: %version%"
+  entry-format: "[%timestamp%] Jugador: %player% | Ítem: %item% (%item_type%) | Acción: %action% | Detalles: %details%"
+  action-invalid: "Removido encantamiento inválido: %enchant% nivel %level% (no puede ir en %item_type%)"
+  action-level: "Reducido nivel: %enchant% de nivel %level% a nivel %max% (máximo vanilla)"
+  action-incompatible: "Removido encantamiento incompatible: %enchant% nivel %level% (incompatible con %other% nivel %other_level%)"
+
+# Mensajes de consola cuando settings.debug-mode está en true
+debug:
+  fixed-summary: "Corregidos %count% ítem(s) para %player% (%context%)"

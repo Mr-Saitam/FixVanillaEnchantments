@@ -1,0 +1,54 @@
+# ==========================================
+# FixVanillaEnchantments - Language: English
+# ==========================================
+# Edit any message freely.
+# Colors: use & followed by a code (e.g. &a green, &c red, &6 gold, &7 gray).
+# Placeholders: each message lists which ones you can use between %percent-signs%,
+# don't remove or rename them or they will stop being replaced.
+#
+# This file also serves as the plugin's internal fallback: if the active
+# language file is missing a key (an unfinished translation, or a new key
+# added in an update), the plugin uses the value from here instead of
+# crashing or showing a raw key name.
+# ==========================================
+
+prefix: "&6[Enchantments]"
+
+messages:
+  items-fixed: "&aYour items were fixed because they had illegal enchantments"
+  no-permission: "&cYou don't have permission to use this command"
+  fixed-manual: "&aYour items have been fixed successfully"
+  no-items-to-fix: "&7Your items were already fine, nothing to fix"
+  reload-success: "&aConfiguration reloaded successfully"
+  in-game-only: "This command can only be used in-game."
+
+# Short descriptions for each trigger. Used both in the log file and in
+# console debug messages. %container% is replaced with the container type
+# (CHEST, BARREL, etc.)
+event-types:
+  join: "Server join"
+  manual: "Manual fix (/fixmyitems)"
+  pickup: "Picked up from the ground"
+  hotbar: "Hotbar slot change"
+  swap-main: "Hand swap (main hand)"
+  swap-off: "Hand swap (off hand)"
+  inventory-click: "Inventory click"
+  cursor: "Item on cursor"
+  drag: "Inventory drag"
+  inventory-close: "Inventory close"
+  container-close: "%container% closed"
+  shulker-suffix: " (inside shulker box)"
+
+# Lines used when writing to plugins/FixVanillaEnchantments/logs/
+log:
+  session-started: "=== FixVanillaEnchantments log started ==="
+  server-started-at: "Server started at: %date%"
+  plugin-version: "Plugin version: %version%"
+  entry-format: "[%timestamp%] Player: %player% | Item: %item% (%item_type%) | Action: %action% | Details: %details%"
+  action-invalid: "Removed invalid enchantment: %enchant% level %level% (can't be applied to %item_type%)"
+  action-level: "Reduced level: %enchant% from level %level% to level %max% (vanilla max)"
+  action-incompatible: "Removed incompatible enchantment: %enchant% level %level% (incompatible with %other% level %other_level%)"
+
+# Console messages shown when settings.debug-mode is true
+debug:
+  fixed-summary: "Fixed %count% item(s) for %player% (%context%)"

@@ -1,0 +1,38 @@
+name: FixVanillaEnchantments
+version: 2.2.0
+main: me.matias.fixenchants.FixVanillaEnchantments
+api-version: 1.20
+author: MrSaitam
+description: Automatically fixes illegal enchantments on items to match vanilla Minecraft limits, including shulker boxes and containers
+
+commands:
+
+  fixenchants-reload:
+    description: Reload the plugin configuration
+    usage: /fixenchants-reload
+    aliases: [fixench-reload, fereload]
+    permission: fixvanillaenchants.reload
+    permission-message: §cYou don't have permission to use this command
+
+  fixmyitems:
+    description: Manually fix illegal enchantments in your own inventory
+    usage: /fixmyitems
+    aliases: [fixme, fixitems]
+    permission: fixvanillaenchants.use
+    permission-message: §cYou don't have permission to use this command
+
+permissions:
+  fixvanillaenchants.*:
+    description: Gives access to all FixVanillaEnchantments permissions
+    children:
+      fixvanillaenchants.use: true
+      fixvanillaenchants.reload: true
+    default: op
+
+  fixvanillaenchants.use:
+    description: Allows using /fixmyitems to manually fix your own inventory
+    default: true
+
+  fixvanillaenchants.reload:
+    description: Allows reloading the plugin configuration
+    default: op

@@ -1,0 +1,168 @@
+# ==========================================
+# FixVanillaEnchantments Configuration
+# ==========================================
+# Author: MrSaitam
+# Cualquier duda o reporte de errores: https://github.com/Mr-Saitam/FixVanillaEnchantments
+# ==========================================
+
+# Idioma de todos los mensajes (chat + archivo de log + debug de consola).
+# El archivo correspondiente vive en plugins/FixVanillaEnchantments/lang/<idioma>.yml
+# y se crea solo la primera vez. Idiomas incluidos: es, en.
+# Para agregar otro idioma: copiá lang/es.yml a lang/<codigo>.yml, traducilo,
+# y poné ese código acá. No hace falta recompilar el plugin.
+language: es
+
+settings:
+  # Notificar a los jugadores cuando sus items son corregidos
+  notify-players: true
+
+  # Corregir items cuando el jugador entra al servidor
+  fix-on-join: true
+
+  # Corregir items cuando se mueven en el inventario
+  fix-on-inventory-move: true
+
+  # Corregir items cuando el jugador los recoge del suelo
+  fix-on-pickup: true
+
+  # Remover encantamientos que no pueden ir en el tipo de item
+  # (ej: Aqua Affinity en una espada, Sharpness en un casco)
+  remove-invalid-enchants: true
+
+  # Guardar todas las acciones en un archivo de log (escritura asíncrona,
+  # no afecta el rendimiento del servidor)
+  # Los logs se guardan en: plugins/FixVanillaEnchantments/logs/fixes-YYYY-MM-DD.log
+  enable-file-logging: true
+
+  # Corregir encantamientos dentro de shulker boxes (al procesarse como ítem,
+  # sin escanear el mundo ni agregar tareas periódicas)
+  fix-shulker-contents: true
+
+  # Corregir el contenido de cofres, barriles, shulkers colocados, ender chests,
+  # dispensers y droppers al cerrarlos (NO cubre transferencias por hopper,
+  # para evitar el costo de escuchar InventoryMoveItemEvent en cada tick)
+  fix-containers: true
+
+  # Modo debug (muestra información detallada en consola, también traducible
+  # desde lang/<idioma>.yml -> sección "debug")
+  debug-mode: false
+
+  # Prioridad de encantamientos (orden de preferencia cuando hay incompatibles)
+  # El primero en la lista tiene mayor prioridad
+  enchantment-priority:
+    - sharpness
+    - protection
+    - power
+    - efficiency
+    - fortune
+    - silk_touch
+    - unbreaking
+    - mending
+
+# Límites máximos de nivel para cada encantamiento
+# Si un encantamiento no está en esta lista, se usará su límite vanilla por defecto
+limits:
+  sharpness: 5
+  smite: 5
+  bane_of_arthropods: 5
+  knockback: 2
+  fire_aspect: 2
+  looting: 3
+  sweeping: 3
+  efficiency: 5
+  silk_touch: 1
+  unbreaking: 3
+  fortune: 3
+  power: 5
+  punch: 2
+  flame: 1
+  infinity: 1
+  protection: 4
+  fire_protection: 4
+  feather_falling: 4
+  blast_protection: 4
+  projectile_protection: 4
+  respiration: 3
+  aqua_affinity: 1
+  thorns: 3
+  depth_strider: 3
+  frost_walker: 2
+  curse_of_binding: 1
+  curse_of_vanishing: 1
+  mending: 1
+  lure: 3
+  luck_of_the_sea: 3
+  impaling: 5
+  riptide: 3
+  loyalty: 3
+  channeling: 1
+  multishot: 1
+  quick_charge: 3
+  piercing: 4
+  soul_speed: 3
+  swift_sneak: 3
+
+# Incompatibilidades entre encantamientos
+# Si un item tiene ambos encantamientos, uno será removido según la prioridad
+incompatible:
+  # Protecciones
+  protection:
+    - fire_protection
+    - blast_protection
+    - projectile_protection
+  fire_protection:
+    - protection
+    - blast_protection
+    - projectile_protection
+  blast_protection:
+    - protection
+    - fire_protection
+    - projectile_protection
+  projectile_protection:
+    - protection
+    - fire_protection
+    - blast_protection
+
+  # Daño de espada
+  sharpness:
+    - smite
+    - bane_of_arthropods
+  smite:
+    - sharpness
+    - bane_of_arthropods
+  bane_of_arthropods:
+    - sharpness
+    - smite
+
+  # Movimiento en agua
+  depth_strider:
+    - frost_walker
+  frost_walker:
+    - depth_strider
+
+  # Herramientas
+  silk_touch:
+    - fortune
+  fortune:
+    - silk_touch
+
+  # Tridente
+  riptide:
+    - loyalty
+    - channeling
+  loyalty:
+    - riptide
+  channeling:
+    - riptide
+
+  # Ballesta
+  multishot:
+    - piercing
+  piercing:
+    - multishot
+
+  # Arco
+  infinity:
+    - mending
+  mending:
+    - infinity
