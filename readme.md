@@ -1,59 +1,58 @@
 # FixVanillaEnchantments
 
-<img width="1600" height="500" alt="banner" src="https://github.com/user-attachments/assets/6eb1d780-8abb-4013-9be6-bf14feff8a63" />
+<img width="1600" height="500" alt="image" src="https://github.com/user-attachments/assets/ee173526-908e-4ad6-879e-586842e4222c" />
 
 
-**Corrige automáticamente ítems con encantamientos ilegales — sin lag, sin comandos manuales, sin dramas.**
+**Automatically fixes items with illegal enchantments — no lag, no manual commands, no drama.**
 
-Sharpness X en una espada. Protection IV + Fire Protection IV en la misma armadura. Fortune y Silk Touch juntos en un pico. Si tu servidor alguna vez tuvo un exploit, un plugin mal configurado, o ítems importados de otro server, seguro tenés ítems así dando vueltas — y arruinan el balance para todos los demás.
+Sharpness X on a sword. Protection IV + Fire Protection IV on the same armor piece. Fortune and Silk Touch together on a pickaxe. If your server ever had an exploit, a misconfigured enchanting plugin, or items imported from another server, you've probably got items like this floating around — and they break the balance for everyone else.
 
-FixVanillaEnchantments los detecta y corrige solo, en el momento en que aparecen: al conectarse, al moverlos en el inventario, al recogerlos del suelo, e incluso **dentro de shulker boxes y contenedores** — todo diseñado para no generar carga extra en el servidor.
+FixVanillaEnchantments detects and corrects them on its own, the moment they appear: on join, when moved around in the inventory, when picked up off the ground, and even **inside shulker boxes and containers** — all designed to add zero extra load to the server.
 
-<img width="1400" height="660" alt="before-after" src="https://github.com/user-attachments/assets/96fb5604-8be8-4d10-b9f8-b53309e7d224" />
-
-
-##  Características
-<img width="1500" height="260" alt="feature-strip" src="https://github.com/user-attachments/assets/55353585-cd3a-4272-a165-10af4b69efbf" />
+<img width="1400" height="660" alt="image" src="https://github.com/user-attachments/assets/efe58c14-edfb-44df-b68a-f8fd49f9de71" />
 
 
--  **Límites vanilla configurables** por encantamiento (Sharpness V, Protection IV, etc.)
--  **Detección de incompatibilidades** (Sharpness + Smite, Fortune + Silk Touch, Riptide + Loyalty...) con reglas de prioridad configurables
--  **Remueve encantamientos inválidos** para el tipo de ítem (ej. Aqua Affinity en una espada)
--  **Revisa shulker boxes** — el contenido se corrige junto con la caja, sin escanear el mundo
--  **Revisa cofres, barriles, ender chests, dispensers y droppers** al cerrarlos
--  **Corrección automática** en: join, click de inventario, drag, recoger del suelo, cambio de hotbar, intercambio de manos, cierre de inventario
--  **Comando manual** `/fixmyitems` para que el propio jugador corrija su inventario
--  **Logging asíncrono** a archivo — cero impacto en el hilo principal del servidor
--  **100% configurable**: activá/desactivá cada trigger, cada mensaje, y los límites de cada encantamiento por separado
+## Features
+<img width="1500" height="260" alt="image" src="https://github.com/user-attachments/assets/addcd7cf-f87b-426d-9bfc-0cbb42e83155" />
 
 
-##  Idioma 100% configurable
+- **Configurable vanilla limits** per enchantment (Sharpness V, Protection IV, etc.)
+- **Incompatibility detection** (Sharpness + Smite, Fortune + Silk Touch, Riptide + Loyalty...) with configurable priority rules
+- **Removes invalid enchantments** for the item type (e.g. Aqua Affinity on a sword)
+- **Checks shulker boxes** — contents are fixed along with the box itself, no world scanning
+- **Checks chests, barrels, ender chests, dispensers and droppers** when they're closed
+- **Automatic correction** on: join, inventory click, drag, picking up from the ground, hotbar switch, hand swap, inventory close
+- **Manual command** `/fixmyitems` so players can fix their own inventory
+- **Asynchronous file logging** — zero impact on the server's main thread
+- **100% configurable**: toggle each trigger, each message, and each enchantment's limits independently
 
-Todo texto que el plugin muestra o escribe (mensajes en el chat, líneas del log, hasta los mensajes de debug) sale de `plugins/FixVanillaEnchantments/lang/<idioma>.yml`, nunca hardcodeado en el código. Se elige con una sola línea en `config.yml`:
+## Fully configurable language
+
+Every piece of text the plugin shows or writes (chat messages, log lines, even debug messages) comes from `plugins/FixVanillaEnchantments/lang/<language>.yml`, never hardcoded in the code. Pick it with a single line in `config.yml`:
 
 ```yaml
-language: es   # o "en"
+language: es   # or "en"
 ```
 
-Vienen incluidos español (`es`) e inglés (`en`). Para agregar otro idioma: copiá `lang/es.yml` a `lang/<código>.yml`, traducilo, y cambiá `language:` — no hace falta recompilar el plugin. Si a una traducción le falta una clave, el plugin usa automáticamente el inglés embebido como respaldo, así nunca se rompe por un mensaje faltante.
+Spanish (`es`) and English (`en`) are included out of the box. To add another language: copy `lang/es.yml` to `lang/<code>.yml`, translate it, and change `language:` — no need to recompile the plugin. If a translation is missing a key, the plugin automatically falls back to the embedded English default, so it never breaks over a missing message.
 
-##  Instalación
+## Installation
 
-1. Descargá el `.jar` y soltalo en la carpeta `plugins/` de tu servidor Paper/Spigot.
-2. Reiniciá el servidor (o cargalo con tu plugin manager favorito).
-3. Editá `plugins/FixVanillaEnchantments/config.yml` a gusto.
-4. Listo — no requiere ninguna dependencia externa.
+1. Download the `.jar` and drop it into your Paper/Spigot server's `plugins/` folder.
+2. Restart the server (or load it with your favorite plugin manager).
+3. Edit `plugins/FixVanillaEnchantments/config.yml` to your liking.
+4. Done — no external dependencies required.
 
-**Requiere:** Paper/Spigot 1.13 o superior · Java 8+
+**Requires:** Paper/Spigot 1.13 or higher · Java 8+
 
-##  Comandos
+## Commands
 
-| Comando | Alias | Permiso | Descripción |
+| Command | Aliases | Permission | Description |
 |---|---|---|---|
-| `/fixmyitems` | `/fixme`, `/fixitems` | `fixvanillaenchants.use` (default: todos) | Corrige manualmente el inventario del jugador |
-| `/fixenchants-reload` | `/fixench-reload`, `/fereload` | `fixvanillaenchants.reload` (default: op) | Recarga la configuración sin reiniciar |
+| `/fixmyitems` | `/fixme`, `/fixitems` | `fixvanillaenchants.use` (default: everyone) | Manually fixes the player's own inventory |
+| `/fixenchants-reload` | `/fixench-reload`, `/fereload` | `fixvanillaenchants.reload` (default: op) | Reloads the configuration without restarting |
 
-##  Configuración
+## Configuration
 
 ```yaml
 settings:
@@ -76,7 +75,7 @@ settings:
 limits:
   sharpness: 5
   protection: 4
-  # ... todos los encantamientos vanilla
+  # ... every vanilla enchantment
 
 incompatible:
   protection: [fire_protection, blast_protection, projectile_protection]
@@ -84,31 +83,31 @@ incompatible:
   # ...
 ```
 
-Cada trigger se puede desactivar individualmente si preferís un enfoque más liviano o más agresivo.
+Each trigger can be disabled individually if you prefer a lighter or a more aggressive setup.
 
-##  Rendimiento
+## Performance
 
-Diseñado explícitamente para servidores con mucha población:
+Explicitly designed for high-population servers:
 
-- El logging es **asíncrono** (cola en memoria + flush periódico), nunca bloquea el hilo principal.
-- Las shulker boxes se filtran por tipo de ítem antes de deserializar su NBT — cero costo para ítems que no son shulkers.
-- Los contenedores (cofres, barriles, etc.) se revisan solo al **cerrarse**, nunca por un listener de hoppers ni por escaneo periódico del mundo.
-- Los handlers de inventario descartan eventos irrelevantes antes de agendar cualquier tarea.
+- Logging is **asynchronous** (in-memory queue + periodic flush), never blocks the main thread.
+- Shulker boxes are filtered by item type before their NBT is ever deserialized — zero cost for non-shulker items.
+- Containers (chests, barrels, etc.) are only checked when **closed**, never through a hopper listener or a periodic world scan.
+- Inventory handlers discard irrelevant events before scheduling any task.
 
-##  Compilar desde el código fuente
+## Building from source
 
 ```bash
-git clone https://github.com/<tu-usuario>/FixVanillaEnchantments.git
+git clone https://github.com/<your-username>/FixVanillaEnchantments.git
 cd FixVanillaEnchantments
 mvn clean package
 ```
 
-El `.jar` final queda en `target/FixVanillaEnchantments-<version>.jar`.
+The final `.jar` will be in `target/FixVanillaEnchantments-<version>.jar`.
 
-##  Contribuciones
+## Contributing
 
-Issues y PRs son bienvenidos. Si encontrás un ítem que se te escapa al fix, abrí un issue con el tipo de ítem y el contexto (cofre, shulker, trade de aldeano, etc.).
+Issues and PRs are welcome. If you find an item that slips through the fixer, open an issue with the item type and context (chest, shulker, villager trade, etc.).
 
-##  Licencia
+## License
 
-MIT — usalo, modificalo, redistribuilo libremente.
+MIT — use it, modify it, redistribute it freely.
